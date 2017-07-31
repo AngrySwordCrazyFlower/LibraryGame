@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bgp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/circle"
+        android:scaleType="center"
+        android:layout_alignParentBottom="true"/>
+    <ImageView
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/menu_bg"
+        android:src="@mipmap/menu"
+        android:scaleType="center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/grade_frame"
+        android:id="@+id/star_compenent">
+        <ImageView
+            android:id="@+id/star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@mipmap/star"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/star"
+            android:text="123"
+            android:gravity="center_vertical|left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/star_compenent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/ranklist_bg">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/ranklist"
+                    android:text="排行榜"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"/>
+                <TextView
+                    android:id="@+id/achievement"
+                    android:text="成就"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="#50ffffff"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
+            <ListView
+                android:id="@+id/ranklist_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutAnimation="@anim/list_anim_layout">
+
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_spread"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@mipmap/menu_spread"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/image_setting"
+            android:layout_marginTop="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_setting"
+            android:layout_marginRight="2dp"
+            android:layout_gravity="right"/>
+
+        <TextView
+            android:id="@+id/text_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="2dp"
+            android:gravity="right"
+            android:text="设置" />
+
+
+        <ImageView
+            android:id="@+id/image_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_personal"
+            android:layout_marginRight="2dp"
+            android:layout_gravity="right" />
+
+        <TextView
+            android:id="@+id/text_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="2dp"
+            android:maxEms="2"
+            android:text="个人信息" />
+
+
+        <ImageView
+            android:id="@+id/image_base"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_base"
+            android:layout_marginRight="2dp"
+            android:layout_gravity="right"/>
+        <TextView
+            android:id="@+id/text_base"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp"
+            android:text="基地" />
+
+
+        <ImageView
+            android:id="@+id/image_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_mall"
+            android:layout_marginRight="2dp"
+            android:layout_gravity="right"/>
+        <TextView
+            android:id="@+id/text_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp"
+            android:text="商场" />
+    </LinearLayout>
+
+</RelativeLayout>
