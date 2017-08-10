@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="840px"
+    android:layout_height="180px"
+    android:background="@mipmap/exchange_bg">
+
+    <ImageView
+        android:src="@mipmap/icon_havegot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/gift_lendbook"
+        android:scaleType="center"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="26dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="180px"
+        android:layout_marginLeft="75dp"
+        android:gravity="center_vertical|center_horizontal">
+        <TextView
+            android:text="借阅图书兑换券"
+            android:textColor="#FFFFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(为期一月,且仅对上海地区)"
+            android:textColor="#DDFFFFFF"
+            android:textSize="10sp"/>
+
+    </LinearLayout>
+    <TextView
+        android:text="兑换"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/choice_bg"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginRight="20dp"/>
+
+    <com.example.crazyflower.librarygame.RotateTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x2"
+        android:background="@mipmap/num_havenotexchange"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:textSize="14sp"
+        />
+</RelativeLayout>

@@ -9,9 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".BaseActivity"
+            android:launchMode="singleTop">
+
         </activity>
-        <activity android:name=".SignIn">
+
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTop">
+
+        </activity>
+
+        <activity android:name=".SignIn"
+            android:launchMode="singleTop">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +29,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp">
+
+        <activity android:name=".SignUp"
+            android:launchMode="singleTop">
+
+        </activity>
+
+        <activity android:name=".SettingActivity"
+            android:launchMode="singleTop">
+
+        </activity>
+
+        <activity android:name=".MallActivity"
+            android:launchMode="singleTop">
+
+        </activity>
+
+        <activity android:name=".AboutUs"
+            android:launchMode="singleTop">
 
         </activity>
     </application>

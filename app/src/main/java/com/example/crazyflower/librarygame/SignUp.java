@@ -1,5 +1,6 @@
 package com.example.crazyflower.librarygame;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -49,8 +50,8 @@ public class SignUp extends AppCompatActivity {
             String password = user_psd.getText().toString();
             String password_agin = user_psd_again.getText().toString();
             String type = null;
-
-            if (!checkEdit(name, password, password_agin)) {
+            String result = null;
+            /*if (!checkEdit(name, password, password_agin)) {
                 return;
             } else {
                 if (Check.isMobile(name)) {
@@ -60,7 +61,7 @@ public class SignUp extends AppCompatActivity {
                 }
                 HttpURLConnection httpURLConnection = null;
                 try {
-                    URL url = new URL("http://192.168.0.13:8080/ServerXXX/servlet/LoginServle");
+                    URL url = new URL("http://192.168.0.13:8080/ServerXXX/servlet/RegisiterServle");
                     httpURLConnection = (HttpURLConnection) url.openConnection();
                     String data = "user=" + name + "&password=" + password + "&type=" + type;
                     OutputStream os = httpURLConnection.getOutputStream();
@@ -71,7 +72,7 @@ public class SignUp extends AppCompatActivity {
                     int responseCode = httpURLConnection.getResponseCode();
                     if (responseCode == 200) {
                         InputStream is = httpURLConnection.getInputStream();
-                        String state = getStringFromInputStream(is);
+                        result = getStringFromInputStream(is);
 
                     } else {
                         Log.i("SignUp.class", "网络连接不对");
@@ -81,7 +82,13 @@ public class SignUp extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
+            Account account = new Account("123456789@qq.com", "123456", result);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("Account", account);
+            Intent intent = new Intent(SignUp.this, MainActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 
@@ -100,6 +107,7 @@ public class SignUp extends AppCompatActivity {
 
         return result;
     }
+
     private boolean checkEdit(String name, String password, String password_again) {
         if (!password.equals(password_again)) {
             Toast.makeText(SignUp.this, "两次密码不一致", Toast.LENGTH_LONG);

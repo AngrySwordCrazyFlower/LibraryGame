@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">LibraryGame</string>
+    <string name="about_us">
+        游戏版本: v1.0\n\n\n
+        开发机构: 武汉大学\n\n\n
+        邮箱: zhonghua50yuan@sina.com\n\n\n
+        电话: 18086482478\n\n\n
+        地址: 湖北省武汉市武昌区八一路武汉大学\n\n\n
+        邮编: 430000\n\n\n
+        感谢合作: 上海市图书馆
+    </string>
 </resources>
