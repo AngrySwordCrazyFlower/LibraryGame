@@ -155,30 +155,15 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.famousbook:
                 currOrd = 2;
-                ensure.startAnimation(animation_bottom_to_top);
-                blackBG.setVisibility(View.VISIBLE);
-                ensure.setVisibility(View.VISIBLE);
-                tool_image.setImageResource(R.mipmap.gift_famousbook);
-                tool_content.setText("名人手稿兑换券: 集齐一定数量兑换名人手稿");
-                tool_price.setText(4000 + "");
+                Toast.makeText(MallActivity.this, "抱歉,暂时不提供购买", Toast.LENGTH_LONG).show();
                 break;
             case R.id.realbook:
                 currOrd = 3;
-                ensure.startAnimation(animation_bottom_to_top);
-                blackBG.setVisibility(View.VISIBLE);
-                ensure.setVisibility(View.VISIBLE);
-                tool_image.setImageResource(R.mipmap.gift_realbook);
-                tool_content.setText("实体书兑换券: 集齐一定数量兑换实体书");
-                tool_price.setText(4000 + "");
+                Toast.makeText(MallActivity.this, "抱歉,暂时不提供购买", Toast.LENGTH_LONG).show();
                 break;
             case R.id.lendbook:
                 currOrd = 4;
-                ensure.startAnimation(animation_bottom_to_top);
-                blackBG.setVisibility(View.VISIBLE);
-                ensure.setVisibility(View.VISIBLE);
-                tool_image.setImageResource(R.mipmap.gift_lendbook);
-                tool_content.setText("借阅图书兑换券: 集齐一定数量借阅图书");
-                tool_price.setText(4000 + "");
+                Toast.makeText(MallActivity.this, "抱歉,暂时不提供购买", Toast.LENGTH_LONG).show();
                 break;
             case R.id.ensure:
                 break;

@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -239,5 +240,51 @@ public class Account implements Serializable{
             }
         };
         t1.start();
+    }
+
+    public void getList() {
+        Thread t1 = new Thread() {
+            public void run() {
+                try {
+                    //请求数据
+                    HttpClient hc = new DefaultHttpClient();
+                    HttpPost hp = new HttpPost(
+                            "http://115.159.92.219:2000/api/getsuggestion");
+                    //请求json报文
+                    JSONObject jo = new JSONObject();
+                    jo.put("username", name);
+
+                    hp.setEntity(new StringEntity(jo.toString(), "UTF-8"));
+                    HttpResponse hr = hc.execute(hp);
+                    result = null;
+                    //获取返回json报文
+                    if (hr.getStatusLine().getStatusCode() == 200) {
+                        result = EntityUtils.toString(hr.getEntity());
+                        Log.i("suggcontent", result);
+                    }
+                    //关闭连接
+                    if (hc != null) {
+                        hc.getConnectionManager().shutdown();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        t1.start();
+        while (t1.isAlive()) {
+
+        }
+        try {
+            JSONObject jo = new JSONObject(result);
+            if (jo.getString("suggestion1").equals("") == false) {
+                backList.add(jo.getString("suggestion1"));
+            }
+            if (jo.getString("suggestion2").equals("") == false) {
+                backList.add(jo.getString("suggestion2"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

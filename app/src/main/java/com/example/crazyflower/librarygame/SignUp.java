@@ -91,6 +91,7 @@ public class SignUp extends AppCompatActivity {
                             //获取返回json报文
                             if (hr.getStatusLine().getStatusCode() == 200) {
                                 result = EntityUtils.toString(hr.getEntity());
+                                Log.i("zhuce", result);
                             }
                             //关闭连接
                             if (hc != null) {
@@ -105,15 +106,13 @@ public class SignUp extends AppCompatActivity {
                 while (t1.isAlive()) {
 
                 }
-                try {
-                    JSONObject jo = new JSONObject(result);
-                    if (jo.getString("result").equals("right")) {
-                        myAccount.setName(name);
-                    } else {
-                        Toast.makeText(SignUp.this, "用户名已存在", Toast.LENGTH_LONG).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (result.equals("right")) {
+                    myAccount = Account.getInstance();
+                    myAccount.setName(name);
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(SignUp.this, "用户名已存在", Toast.LENGTH_LONG).show();
                 }
             } else {
                 if (password.equals(password_agin) == false) {
