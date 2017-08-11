@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView starNum;
     private LinearLayout menu_spread;
     private ImageView threeCircle;
-    private Animation animation;
+    private Animation animationLeft;
     private Account myAccount;
 
     private TextView savedStarNum;
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView achievement;
     private RelativeLayout achievementContent;
     private ListView listView;
+    private Animation animation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,15 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
         myAccount = Account.getInstance();
 
-
-        myAccount.addStar(10);
         initDatas();
         initView();
         RankAdapter adapter = new RankAdapter(MainActivity.this, R.layout.rank_item, rankList);
         listView.setAdapter(adapter);
-
-
-
 
     }
 
@@ -83,12 +79,14 @@ public class MainActivity extends AppCompatActivity {
         starNum.setText(myAccount.getStar() + "");
     }
     private void initView() {
+        animationLeft = AnimationUtils.loadAnimation(this, R.anim.menu_spread_right_to_left);
         menu_image = (ImageView) findViewById(R.id.menu);
         menu_spread = (LinearLayout) findViewById(R.id.menu_spread) ;
         menu_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 menu_image.setVisibility(View.GONE);
+                menu_spread.startAnimation(animationLeft);
                 menu_spread.setVisibility(View.VISIBLE);
             }
         });

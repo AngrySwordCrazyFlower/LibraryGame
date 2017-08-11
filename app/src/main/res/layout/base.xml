@@ -58,6 +58,7 @@
                     android:text="流星冰冻器"
                     android:layout_marginTop="6dp"/>
                 <TextView
+                    android:id="@+id/freeze_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@mipmap/num_bg"
@@ -90,6 +91,7 @@
                     android:text="手稿放大镜"
                     android:layout_marginTop="6dp"/>
                 <TextView
+                    android:id="@+id/glass_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@mipmap/num_bg"

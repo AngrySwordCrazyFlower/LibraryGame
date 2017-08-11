@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -29,7 +30,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView sharePic;
     private ImageView returnSugg;
     private ImageView aboutUs;
-
+    private ImageView backBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,13 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         returnSugg = (ImageView) findViewById(R.id.returnsgg);
         aboutUs.setOnClickListener(this);
         returnSugg.setOnClickListener(this);
+        backBt = (ImageView) findViewById(R.id.setting_back_bt);
+        backBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 

@@ -19,6 +19,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +46,8 @@ public class SignIn extends AppCompatActivity {
     private TextView userPassword;
     private Button signIn;
     private TextView signUp;
-
+    private String result = null;
+    private Account myAccount;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,47 +75,73 @@ public class SignIn extends AppCompatActivity {
     private class SignInBt implements View.OnClickListener {
         public void onClick(View view) {
 
-            String name = userName.getText().toString();
-            String password = userPassword.getText().toString();
+            final String name = userName.getText().toString();
+            final String password = userPassword.getText().toString();
             String type = null;
-            String result = null;
             Log.i("SignIn", name + password);
-            /*if (!checkEdit(name, password)) {
-                return;
-            } else {
-                if (Check.isMobile(name)) {
-                    type = "phone";
-                } else if (Check.checkEmail(name)) {
-                    type = "email";
-                }
-                HttpURLConnection httpURLConnection = null;
-                try {
-                    URL url = new URL("http://192.168.0.13:8080/ServerXXX/servlet/RegisiterServle");
-                    httpURLConnection = (HttpURLConnection) url.openConnection();
-                    String data = "user=" + name + "&password=" + password + "&type=" + type;
-                    OutputStream os = httpURLConnection.getOutputStream();
-                    os.write(data.getBytes());
-                    os.flush();
-                    os.close();
 
-                    int responseCode = httpURLConnection.getResponseCode();
-                    if (responseCode == 200) {
-                        InputStream is = httpURLConnection.getInputStream();
-                        result = getStringFromInputStream(is);
+            if ((name.equals("") == false) && (password.equals("") == false)) {
+                Thread t1 = new Thread() {
+                    public void run() {
+                        try {
+                            //请求数据
+                            HttpClient hc = new DefaultHttpClient();
+                            HttpPost hp = new HttpPost(
+                                    "http://115.159.92.219:2000/api/authenticated");
+                            //请求json报文
+                            JSONObject jo = new JSONObject();
+                            jo.put("username", name);
+                            jo.put("password", password);
 
-                    } else {
-                        Log.i("SignUp.class", "网络连接不对");
+                            hp.setEntity(new StringEntity(jo.toString(), "UTF-8"));
+                            HttpResponse hr = hc.execute(hp);
+                            result = null;
+                            //获取返回json报文
+                            if (hr.getStatusLine().getStatusCode() == 200) {
+                                result = EntityUtils.toString(hr.getEntity());
+                                Log.d("2134", "result : " + result);
+                            }
+                            //关闭连接
+                            if (hc != null) {
+                                hc.getConnectionManager().shutdown();
+                                Log.i("2134", "eee");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.i("2134", "error");
+                        }
                     }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                };
+                t1.start();
+                while (t1.isAlive()) {
+
+                }
+                myAccount = Account.getInstance();
+                try {
+                    JSONObject jo = new JSONObject(result);
+                    if (jo.getInt("status") == 0) {
+                        myAccount.setName(name);
+                        myAccount.setStar(jo.getInt("star"));
+                        myAccount.setLendbook_num(jo.getInt("lendbook"));
+                        myAccount.setFamousbook_num(jo.getInt("famousbook"));
+                        myAccount.setRealbook_num(jo.getInt("realbook"));
+                        myAccount.setFreeze(jo.getInt("freeze"));
+                        myAccount.setGlass(jo.getInt("glass"));
+                        myAccount.setSavedStarNum(jo.getInt("savedStar"));
+                        myAccount.setStoneNum(jo.getInt("stone"));
+                        Intent intent = new Intent(SignIn.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(SignIn.this, "账号或密码错误", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }*/
+            }
             //remain httpconnection to do
-            Account.getInstance();
-            Intent intent = new Intent(SignIn.this, MainActivity.class);
-            startActivity(intent);
+            //Account.getInstance();
+            //Intent intent = new Intent(SignIn.this, MainActivity.class);
+            //startActivity(intent);
         }
     }
 

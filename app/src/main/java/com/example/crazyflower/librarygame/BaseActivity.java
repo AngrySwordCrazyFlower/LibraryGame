@@ -27,7 +27,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private TextView lendbookNum;
     private Account myAccount;
     private ImageView backBt;
-
+    private TextView freezeNum;
+    private TextView glassNum;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
+        freezeNum = (TextView) findViewById(R.id.freeze_num);
+        glassNum = (TextView) findViewById(R.id.glass_num);
+
         realbookGet = (ImageView) findViewById(R.id.realbook_get);
         famousbookGet = (ImageView) findViewById(R.id.famousbook_get);
         lendbookGet = (ImageView) findViewById(R.id.lendbook_get);
@@ -82,6 +86,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
         backBt = (ImageView) findViewById(R.id.base_back);
         backBt.setOnClickListener(this);
+    }
+
+    public void onResume() {
+        super.onResume();
+        glassNum.setText("x" + myAccount.getGlass());
+        freezeNum.setText("x" + myAccount.getFreeze());
     }
 
     @Override

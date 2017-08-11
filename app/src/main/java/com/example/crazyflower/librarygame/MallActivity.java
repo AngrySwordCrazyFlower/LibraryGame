@@ -28,7 +28,7 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout lendbook;
     private LinearLayout famousbook;
 
-    //黑屏Imgae
+    //黑屏Image
     private ImageView blackBG;
 
     //确认框控件
@@ -51,7 +51,8 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
 
     private Account myAccount;
 
-    int[] price = {200, 200, 200, 200, 200};
+    private ImageView backBt;
+    int[] price = {200, 200, 4000, 4000, 4000};
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +116,7 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
 
         cancel = (TextView) findViewById(R.id.cancel);
         buy = (TextView) findViewById(R.id.buy);
-
+        backBt = (ImageView) findViewById(R.id.mall_back_bt);
         freeze.setOnClickListener(this);
         glass.setOnClickListener(this);
         realbook.setOnClickListener(this);
@@ -124,8 +125,8 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
         blackBG.setOnClickListener(this);
         ensure.setOnClickListener(this);
         cancel.setOnClickListener(this);
-        buy.setOnClickListener(this );
-
+        buy.setOnClickListener(this);
+        backBt.setOnClickListener(this);
         star_num = (TextView) findViewById(R.id.mall_star_num);
         animation_bottom_to_top = AnimationUtils.loadAnimation(this, R.anim.ensure_from_bottom_to_top);
         animation_top_to_bottom = AnimationUtils.loadAnimation(this, R.anim.ensure_from_top_to_bottom);
@@ -159,7 +160,7 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
                 ensure.setVisibility(View.VISIBLE);
                 tool_image.setImageResource(R.mipmap.gift_famousbook);
                 tool_content.setText("名人手稿兑换券: 集齐一定数量兑换名人手稿");
-                tool_price.setText(2000 + "");
+                tool_price.setText(4000 + "");
                 break;
             case R.id.realbook:
                 currOrd = 3;
@@ -168,7 +169,7 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
                 ensure.setVisibility(View.VISIBLE);
                 tool_image.setImageResource(R.mipmap.gift_realbook);
                 tool_content.setText("实体书兑换券: 集齐一定数量兑换实体书");
-                tool_price.setText(200 + "");
+                tool_price.setText(4000 + "");
                 break;
             case R.id.lendbook:
                 currOrd = 4;
@@ -177,7 +178,7 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
                 ensure.setVisibility(View.VISIBLE);
                 tool_image.setImageResource(R.mipmap.gift_lendbook);
                 tool_content.setText("借阅图书兑换券: 集齐一定数量借阅图书");
-                tool_price.setText(200 + "");
+                tool_price.setText(4000 + "");
                 break;
             case R.id.ensure:
                 break;
@@ -197,6 +198,11 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
                 blackBG.setVisibility(View.GONE);
                 ensure.setVisibility(View.GONE);
                 break;
+            case R.id.mall_back_bt:
+                finish();
+                break;
+            default:
+                break;
 
         }
     }
@@ -205,8 +211,9 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
         if (price[currOrd]*currNum > myAccount.getStar()) {
             Toast.makeText(MallActivity.this, "星星不够哦.", Toast.LENGTH_LONG).show();
         } else {
-            myAccount.decStar(price[currOrd]*currNum);
-            star_num.setText(myAccount.getStar() + "");
+            int num = myAccount.getStar();
+            myAccount.buy(currOrd , currNum);
+            star_num.setText(num - price[currOrd]*currNum + "");
             Toast.makeText(MallActivity.this, "购买成功.", Toast.LENGTH_LONG).show();
         }
     }
