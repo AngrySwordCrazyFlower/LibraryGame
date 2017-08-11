@@ -3,11 +3,19 @@ package com.example.crazyflower.librarygame;
 import android.content.Intent;
 import android.icu.util.ValueIterator;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.SingleLineTransformationMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +38,17 @@ public class SignIn extends AppCompatActivity {
     private Button signIn;
     private TextView signUp;
 
-
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window window = getWindow();
+        //隐藏标题栏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //隐藏状态栏
+        //定义全屏参数
+        int flag= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        //设置当前窗体为全屏显示
+        window.setFlags(flag, flag);
         setContentView(R.layout.sign_in);
         initWidget();
     }
@@ -88,11 +103,8 @@ public class SignIn extends AppCompatActivity {
                 }
             }*/
             //remain httpconnection to do
-            Account account = new Account(name, password, result);
+            Account.getInstance();
             Intent intent = new Intent(SignIn.this, MainActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("Account", account);
-            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
@@ -127,5 +139,13 @@ public class SignIn extends AppCompatActivity {
             Intent intent = new Intent(SignIn.this, SignUp.class);
             startActivity(intent);
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(false);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

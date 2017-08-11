@@ -64,9 +64,7 @@ public class MallActivity extends AppCompatActivity implements View.OnClickListe
         //设置当前窗体为全屏显示
         window.setFlags(flag, flag);
         setContentView(R.layout.mall);
-
-        Intent intent = getIntent();
-        myAccount = (Account) intent.getSerializableExtra("Account");
+        myAccount = Account.getInstance();
 
         initView();
 

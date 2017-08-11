@@ -10,6 +10,7 @@
         android:layout_alignParentBottom="true"
         />
     <ImageView
+        android:id="@+id/base_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/icon_backbt"
@@ -85,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFFFF"
-                    android:textSize="14sp"
+                    android:textSize="10sp"
                     android:text="手稿放大镜"
                     android:layout_marginTop="6dp"/>
                 <TextView

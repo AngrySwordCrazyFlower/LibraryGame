@@ -1,6 +1,7 @@
 package com.example.crazyflower.librarygame;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +24,34 @@ public class Account implements Serializable{
     private int lendbook_num;
     private List backList;
 
-    public Account(String user_name, String user_password, String result) {
+    private static Account uniqueInstance;
+
+
+
+    private Account() {
         star = 500;
-        name = "123456789@qq.com";
+        name = "1234589@qq.com";
+        backList = new ArrayList();
+        backList.add("213");
+        backList.add("fsdfdsfds");
+        famousbook = true;
+        famousbook_num = 2;
+        realbook =false;
+        realbook_num = 0;
+        lendbook = true;
+        lendbook_num = 3;
+        stoneNum = 2;
+        savedStarNum = 10;
 
     }
 
+
+    public static synchronized Account getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Account();
+        }
+        return uniqueInstance;
+    }
     public void addStar(int num) {
         star += num;
     }

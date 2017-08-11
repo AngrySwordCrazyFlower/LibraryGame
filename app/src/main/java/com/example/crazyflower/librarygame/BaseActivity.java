@@ -1,7 +1,9 @@
 package com.example.crazyflower.librarygame;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,7 +14,7 @@ import android.widget.TextView;
  * Created by CrazyFlower on 2017/8/8.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView realbookGet;
     private ImageView famousbookGet;
@@ -24,6 +26,9 @@ public class BaseActivity extends AppCompatActivity {
     private TextView famousbookNum;
     private TextView lendbookNum;
     private Account myAccount;
+    private ImageView backBt;
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Window window = getWindow();
@@ -34,8 +39,13 @@ public class BaseActivity extends AppCompatActivity {
         int flag= WindowManager.LayoutParams.FLAG_FULLSCREEN;
         //设置当前窗体为全屏显示
         window.setFlags(flag, flag);
-        setContentView(R.layout.about_us);
-        //initView();
+        setContentView(R.layout.base);
+        myAccount = Account.getInstance();
+        initView();
+    }
+    public void onStart() {
+        super.onStart();
+        Log.i("12345", myAccount.getStar() + "");
     }
 
     private void initView() {
@@ -70,6 +80,18 @@ public class BaseActivity extends AppCompatActivity {
             lendbookNum.setText("x" + myAccount.getLendbook_num());
         }
 
+        backBt = (ImageView) findViewById(R.id.base_back);
+        backBt.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.base_back:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }
